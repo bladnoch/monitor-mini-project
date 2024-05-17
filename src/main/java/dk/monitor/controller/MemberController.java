@@ -15,18 +15,21 @@ public class MemberController {
         this.memberService = memberService;
     }
 
-//    @GetMapping("/team")
-//    public TeamResponse getTeam(@RequestBody TeamRequset requset) {
-//
-//        return new TeamResponse;
-//    }
-
-//    @GetMapping("/member")
-//
-//    @PostMapping("/team")
-//
     @PostMapping("/member")
     public void saveMember(@RequestBody MemberCreateRequest request) {
         memberService.saveMember(request);
     }
+
+//    @GetMapping("/team")
+//    public TeamResponse getTeam(@RequestBody TeamRequset requset) {
+//
+//        return new TeamResponse;
+
+//    }
+//    @GetMapping("/member")
+//
+//    @PostMapping("/team")
+//
+
+
 }
