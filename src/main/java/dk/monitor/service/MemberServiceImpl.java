@@ -15,6 +15,7 @@ public class MemberServiceImpl implements MemberService{
         this.memberRepository = memberRepository;
     }
     public void saveMember(MemberCreateRequest request) {
+        System.out.println("request = " + request.getName()+" "+ request.getTeamName()+" "+ request.getRole()+" "+ request.getBirthday()+" "+ request.getWorkStartDate());
         memberRepository.save(new Member(request.getName(),request.getTeamName(), request.getRole(), request.getBirthday(), request.getWorkStartDate()));
     }
 

@@ -3,6 +3,7 @@ package dk.monitor.dto.request;
 import lombok.Getter;
 
 import java.time.LocalDate;
+import java.util.Locale;
 
 @Getter
 public class MemberCreateRequest {
