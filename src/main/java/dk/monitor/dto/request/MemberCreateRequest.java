@@ -8,13 +8,12 @@ import java.time.LocalDate;
 public class MemberCreateRequest {
 
     private String name;
-
-    private boolean role;  // manager? or member?
-
+    private String role;  // manager? or member?
     private LocalDate workStartDate;
     private LocalDate birthday;
     private String teamName;
-    public MemberCreateRequest(String name, boolean role, LocalDate workStartDate, LocalDate birthday) {
+
+    public MemberCreateRequest(String name, String role, LocalDate workStartDate, LocalDate birthday) {
         this.name = name;
         this.role = role;
         this.workStartDate = workStartDate;
@@ -22,8 +21,4 @@ public class MemberCreateRequest {
         this.teamName = "none";
     }
 
-
-    public boolean getRole() {
-        return role;
-    }
 }

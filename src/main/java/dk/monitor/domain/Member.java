@@ -11,7 +11,7 @@ public class Member {
     protected Member() {
     }
 
-    public Member(String name, String teamName, boolean role, LocalDate birthday, LocalDate workStartDate) {
+    public Member(String name, String teamName, String role, LocalDate birthday, LocalDate workStartDate) {
         this.name = name;
         this.teamName = teamName;
         this.role = role;
@@ -29,7 +29,8 @@ public class Member {
     @Column(length = 25)
     private String teamName;
 
-    private boolean role;  // is manager or member t/f
+    @Column(length = 25)
+    private String role;  // is manager or member t/f
 
     private LocalDate birthday;
 

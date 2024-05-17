@@ -3,9 +3,11 @@ package dk.monitor.service;
 import dk.monitor.domain.Member;
 import dk.monitor.dto.request.MemberCreateRequest;
 import dk.monitor.repository.MemberRepository;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 
+@Service
 public class MemberServiceImpl implements MemberService{
     private final MemberRepository memberRepository;
 
