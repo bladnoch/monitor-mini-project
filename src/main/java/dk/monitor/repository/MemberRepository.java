@@ -1,11 +1,14 @@
 package dk.monitor.repository;
 
 import dk.monitor.domain.Member;
+import dk.monitor.dto.Response.MembersResponse;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.Optional;
+import java.util.List;
 
-@Repository
+
 public interface MemberRepository extends JpaRepository<Member, Long> {
+
+    List<Member> findAll();
 }
