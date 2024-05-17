@@ -1,12 +1,11 @@
-package dk.monitor.service;
+package dk.monitor.service.member;
 
-import dk.monitor.domain.Member;
+import dk.monitor.domain.member.Member;
 import dk.monitor.dto.Response.MembersResponse;
 import dk.monitor.dto.request.MemberCreateRequest;
-import dk.monitor.repository.MemberRepository;
+import dk.monitor.repository.member.MemberRepository;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 

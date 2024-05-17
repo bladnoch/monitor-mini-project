@@ -1,4 +1,4 @@
-package dk.monitor.domain;
+package dk.monitor.domain.member;
 
 import jakarta.persistence.*;
 import lombok.Getter;

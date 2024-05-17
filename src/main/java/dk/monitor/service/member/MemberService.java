@@ -1,10 +1,8 @@
-package dk.monitor.service;
+package dk.monitor.service.member;
 
 import dk.monitor.dto.Response.MembersResponse;
 import dk.monitor.dto.request.MemberCreateRequest;
-import dk.monitor.repository.MemberRepository;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 

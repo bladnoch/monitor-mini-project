@@ -1,9 +1,7 @@
-package dk.monitor.repository;
+package dk.monitor.repository.member;
 
-import dk.monitor.domain.Member;
-import dk.monitor.dto.Response.MembersResponse;
+import dk.monitor.domain.member.Member;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
 
 import java.util.List;
 

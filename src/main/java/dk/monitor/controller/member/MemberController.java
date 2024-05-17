@@ -1,8 +1,8 @@
-package dk.monitor.controller;
+package dk.monitor.controller.member;
 
 import dk.monitor.dto.Response.MembersResponse;
 import dk.monitor.dto.request.MemberCreateRequest;
-import dk.monitor.service.MemberService;
+import dk.monitor.service.member.MemberService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
