@@ -14,12 +14,13 @@ public class MemberCreateRequest {
     private LocalDate birthday;
     private String teamName;
 
-    public MemberCreateRequest(String name, String role, LocalDate workStartDate, LocalDate birthday) {
+    public MemberCreateRequest(String name, String teamName, String role, LocalDate workStartDate, LocalDate birthday) {
         this.name = name;
-        this.role = role;
+        this.teamName = teamName;
+        this.role = role.toUpperCase(Locale.ROOT);
         this.workStartDate = workStartDate;
         this.birthday = birthday;
-        this.teamName = "none";
+
     }
 
 }

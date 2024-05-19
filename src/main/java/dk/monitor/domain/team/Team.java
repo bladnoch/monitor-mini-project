@@ -6,7 +6,6 @@ import lombok.Getter;
 @Getter
 @Entity
 public class Team {
-
     protected Team() {
     }
 

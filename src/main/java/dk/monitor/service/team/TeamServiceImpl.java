@@ -18,4 +18,6 @@ public class TeamServiceImpl implements TeamService {
     public void saveTeam(TeamRequest request) {
         teamRepository.save(new Team(request.getName(),request.getManager(),request.getMemberCount()));
     }
+
+
 }
