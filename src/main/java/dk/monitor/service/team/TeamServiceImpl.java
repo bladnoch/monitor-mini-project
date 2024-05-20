@@ -1,7 +1,7 @@
 package dk.monitor.service.team;
 
 import dk.monitor.domain.team.Team;
-import dk.monitor.dto.request.TeamRequest;
+import dk.monitor.dto.request.TeamCreateRequest;
 import dk.monitor.repository.team.TeamRepository;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +15,7 @@ public class TeamServiceImpl implements TeamService {
         this.teamRepository = teamRepository;
     }
 
-    public void saveTeam(TeamRequest request) {
+    public void saveTeam(TeamCreateRequest request) {
         teamRepository.save(new Team(request.getName(),request.getManager(),request.getMemberCount()));
     }
 

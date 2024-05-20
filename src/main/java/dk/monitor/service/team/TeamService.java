@@ -1,10 +1,10 @@
 package dk.monitor.service.team;
 
-import dk.monitor.dto.request.TeamRequest;
+import dk.monitor.dto.request.TeamCreateRequest;
 
 
 public interface TeamService{
 
-    void saveTeam(TeamRequest request);
+    void saveTeam(TeamCreateRequest request);
 
 }

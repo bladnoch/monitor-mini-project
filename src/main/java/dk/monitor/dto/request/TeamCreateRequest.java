@@ -2,8 +2,10 @@ package dk.monitor.dto.request;
 
 import lombok.Getter;
 
+import java.util.Locale;
+
 @Getter
-public class TeamRequest {
+public class TeamCreateRequest {
 
     private Long id;
 
@@ -13,8 +15,8 @@ public class TeamRequest {
 
     private Long memberCount;
 
-    public TeamRequest(String name) {
-        this.name = name;
+    public TeamCreateRequest(String name) {
+        this.name =name.toUpperCase(Locale.ROOT);
         this.manager = null;
         this.memberCount = 0L;
     }
