@@ -4,6 +4,8 @@ import dk.monitor.domain.member.Member;
 import dk.monitor.domain.team.Team;
 import dk.monitor.dto.Response.MembersResponse;
 import dk.monitor.dto.request.MemberCreateRequest;
+import dk.monitor.dto.request.TeamCreateRequest;
+import dk.monitor.exaptions.ManagerException;
 import dk.monitor.repository.member.MemberRepository;
 import dk.monitor.repository.team.TeamRepository;
 import org.springframework.stereotype.Service;
@@ -11,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class MemberServiceImpl implements MemberService{
@@ -28,46 +31,59 @@ public class MemberServiceImpl implements MemberService{
      */
     @Transactional
     public void saveMember(MemberCreateRequest request) {
-        // member 저장
+        // member 새로 만들기
         memberRepository.save(new Member(request.getName(),request.getTeamName(), request.getRole(), request.getBirthday(), request.getWorkStartDate()));
-
-        long memberCount = 0; // oneTeam.getMemberCount()
-        String role = null; // ontTeam.getRole();
-
-
-        // Team 저장 / 업데이트
-        // Team 저장
-            // 새로운 Team 생성
-            // 저장
-        // Team 업데이트 : member의 팀이름이 team 에 있을경우
-            // role 이 MANAGER인지 확인
-            // memberCount++
-            // 업데이트
-
-
-        // 예외처리 : teamName 이 없을 경우
+        // request 값 확인
         System.out.println("print: request = " + request.getName()+" "+ request.getTeamName()+" "+ request.getRole()+" "+ request.getBirthday()+" "+ request.getWorkStartDate());
-        // 저장할 member정보를 통해 team 정보를 가져온다
-        Team oneTeam = teamRepository.findByName(request.getTeamName()); // input의 teamName 기준으로 Team 가져오기
-        System.out.println("print: team name = "+oneTeam.getName());  // DB에 팀이 있을경우 정상적으로 Team을 불러옴
-        // team이 없을 때 어떻게 출력되는지 확인해야함
 
-        // 가져온 team 정보를 수정
-        // memberCount 업데이트
-        // local memberCount를 통해 저장하고 new Response를 만들 때 이용
-        memberCount = oneTeam.getMemberCount() + 1;
-        System.out.println("print: memberCount = " + memberCount + " " + (oneTeam.getMemberCount()+1));
+        /*
+         member table과 team table의 관개 생성
+         member과 team의 관계
+         (teamName -> name), (role -> manager), (memberCount)
 
-        // role 업데이트
-       if(request.getRole().equals("MANAGER")){
-           // oneTeam에 이름 => request.getName() 추가
-           role = oneTeam.getManager();
-           System.out.println("print: role = " + role+ " "+ oneTeam.getManager());
+         team 새로 만들기 / 업데이트
+         member에 적힌 팀이 team table에 있는지 확인
+         찾는 팀이 있을 경우 불러오기 없을경우 empty
 
-       }
+         */
+        Optional<Team> team = teamRepository.findByName(request.getTeamName()); // input의 teamName 기준으로 Team 가져오기
 
-//        teamRepository.save(new Team(oneTeam.getName(), role, memberCount)); // 없을경우
-//        teamRepository. // 있을경우 onteam.getName()을 통해 memberCount, role만 추가
+        // team 없음
+        if(team.isEmpty()){
+            // team 없음, manager 맞음
+            if(request.getRole().equals("MANAGER")){
+                // team 새로 만들기, (teamName, manager 추가 memberCount++)
+                teamRepository.save(new Team(request.getTeamName(), request.getName(), 1L)); // name, role, memberCount
+            }
+            // team 업음, manager 아님
+            else{
+                // team 새로 만들기, (teamName 추가, memberCount++)
+                teamRepository.save(new Team(request.getTeamName(), null, 1L));
+            }
+        }
+        // team 있음
+        else{
+            // 팀 불러와 변수에 저장
+            Team theteam = team.get();
+            // team 있음, manager 맞음
+            if(request.getRole().equals("MANAGER")){
+                // team 있음, manager 맞음, team 에 manager 없음
+                if (theteam.getManager()==null) {
+                    // team 업데이트 (manager 추가, memberCount++)
+                    theteam.updateManagerAndMemberCount(request.getName());
+                }
+                // team 있음, manager 맞음, manager 있음
+                else {
+                    // 예외처리 : manager 있을 경우 저장되지 않도록 한다.
+                    throw new ManagerException("manager이 존재합니다.");
+                }
+            }
+            // team 있음, manager 아님
+            else{
+                theteam.updateMemberCount();
+            }
+            teamRepository.save(theteam); // name, role, memberCount
+        }
     }
 
     /**

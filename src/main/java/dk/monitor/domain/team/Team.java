@@ -26,4 +26,12 @@ public class Team {
         this.manager = manager;
         this.memberCount = memberCount;
     }
+
+    public void updateManagerAndMemberCount(String managerName) {
+        this.manager = managerName;
+        this.memberCount++;
+    }
+    public void updateMemberCount(){
+        this.memberCount++;
+    }
 }

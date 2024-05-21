@@ -28,17 +28,4 @@ public class MemberController {
     public List<MembersResponse> getMembers() {
         return memberService.getMembers();
     }
-
-//    @GetMapping("/team")
-//    public TeamResponse getTeam(@RequestBody TeamRequset requset) {
-//
-//        return new TeamResponse;
-
-//    }
-
-//
-//    @PostMapping("/team")
-//
-
-
 }

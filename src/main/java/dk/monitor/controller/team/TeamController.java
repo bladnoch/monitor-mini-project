@@ -1,9 +1,13 @@
 package dk.monitor.controller.team;
 
+import dk.monitor.dto.Response.TeamResponse;
 import dk.monitor.dto.request.TeamCreateRequest;
 import dk.monitor.service.team.TeamService;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 public class TeamController {
@@ -20,9 +24,9 @@ public class TeamController {
         teamService.saveTeam(request);
     }
 
-//    @GetMapping("/team")
-//    public TeamResponse getTeam(@RequestBody TeamRequset requset) {
-//        return new TeamResponse;
-//    }
+    @GetMapping("/team")
+    public List<TeamResponse> getTeams() {
+        return teamService.getTeams();
+    }
 
 }
