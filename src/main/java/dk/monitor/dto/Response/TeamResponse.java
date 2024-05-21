@@ -14,7 +14,7 @@ public class TeamResponse {
     private Long memberCount;
 
     public TeamResponse(String name, String manager, Long memberCount) {
-        this.name =name.toUpperCase(Locale.ROOT);
+        this.name =name;
         this.manager = manager;
         this.memberCount = memberCount;
     }

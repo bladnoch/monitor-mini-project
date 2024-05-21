@@ -33,8 +33,6 @@ public class MemberServiceImpl implements MemberService{
     public void saveMember(MemberCreateRequest request) {
         // member 새로 만들기
         memberRepository.save(new Member(request.getName(),request.getTeamName(), request.getRole(), request.getBirthday(), request.getWorkStartDate()));
-        // request 값 확인
-        System.out.println("print: request = " + request.getName()+" "+ request.getTeamName()+" "+ request.getRole()+" "+ request.getBirthday()+" "+ request.getWorkStartDate());
 
         /*
          member table과 team table의 관개 생성

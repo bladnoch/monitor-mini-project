@@ -45,7 +45,6 @@ public class TeamServiceImpl implements TeamService {
             // name, manager, memberCount
             response.add(new TeamResponse(team.getName(), team.getManager(), team.getMemberCount()));
         }
-
         return response;
     }
 }
