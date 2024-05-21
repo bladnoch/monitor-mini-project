@@ -112,3 +112,8 @@ $RECYCLE.BIN/
 # 기타 IDE 관련
 *.vscode/
 *.code-workspace
+/gradle/
+/build.gradle
+/gradlew
+/gradlew.bat
+/settings.gradle
