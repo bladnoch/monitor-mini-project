@@ -18,7 +18,7 @@ public class TeamController {
         this.teamService = teamService;
     }
 
-    // 예외처리: 같은 이름의 팀이 있으면 저장되지 않아야 함
+
     @PostMapping("/team")
     public void saveTeam(TeamCreateRequest request) {
         teamService.saveTeam(request);
