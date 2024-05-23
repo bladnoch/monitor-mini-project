@@ -4,7 +4,6 @@ import dk.monitor.domain.member.Member;
 import dk.monitor.domain.team.Team;
 import dk.monitor.dto.Response.MembersResponse;
 import dk.monitor.dto.request.MemberCreateRequest;
-import dk.monitor.dto.request.TeamCreateRequest;
 import dk.monitor.exaptions.ManagerException;
 import dk.monitor.repository.member.MemberRepository;
 import dk.monitor.repository.team.TeamRepository;

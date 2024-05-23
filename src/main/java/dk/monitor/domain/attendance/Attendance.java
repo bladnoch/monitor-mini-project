@@ -17,9 +17,11 @@ public class Attendance {
     }
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id; // 받은 id를 기반으로 생성
 
 
+    private long memberId;
     private LocalDateTime workStarted; // 일 시작 시간
     private LocalDateTime workFinished; // 일 끝난 시
 
@@ -28,11 +30,10 @@ public class Attendance {
     private Long sum;
 
 
-    public Attendance(Long id, LocalDateTime date) {
-        this.id = id;
-        this.date = date;
-        this.workStarted = date;
-        this.workFinished = date;
+    public Attendance(Long memberId, LocalDateTime localDateTime) {
+        this.memberId = memberId;
+        this.date = localDateTime;
+        this.workStarted = localDateTime;
     }
 
     // 업무 종료시 호출
@@ -40,4 +41,6 @@ public class Attendance {
         // 호출되는 시점으로 업무 종료
         this.workFinished = LocalDateTime.now();
     }
+
+
 }
