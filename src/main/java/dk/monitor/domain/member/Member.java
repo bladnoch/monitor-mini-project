@@ -1,5 +1,6 @@
 package dk.monitor.domain.member;
 
+import dk.monitor.domain.ManagerStatus;
 import jakarta.persistence.*;
 import lombok.Getter;
 
@@ -31,7 +32,12 @@ public class Member {
     private String teamName;
 
     @Column(length = 25, name = "role")
-    private String role;  // is manager or member t/f
+    private String role;  // is manager or member
+
+    // enum을 이용한 manager 여부
+//    @Enumerated(EnumType.STRING)
+//    private ManagerStatus role;
+
 
     @Column(name = "birthday")
     private LocalDate birthday;
