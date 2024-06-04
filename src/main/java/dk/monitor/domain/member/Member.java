@@ -14,13 +14,23 @@ import java.util.List;
 @NoArgsConstructor
 public class Member {
 
-    public Member(String name, String teamName, String role, LocalDate birthday, LocalDate workStartDate) {
+    public Member(String name, String teamName, String role, LocalDate birthday, LocalDate workStartDate, int vacation) {
         this.name = name;
         this.teamName = teamName;
         this.role = role;
         this.birthday = birthday;
         this.workStartDate = workStartDate;
+        this.vacation = vacation;
     }
+
+    // enum을 이용한 manager 여부
+    // @Enumerated(EnumType.STRING)
+    // private ManagerStatus role;
+
+    // cascade : 유저가 저장/삭제될 때 uerLoanHistories도 같이 삭제
+    // orphanRemoval : 관계가 끝어지면 관계가 사라진 객체도 같이 삭제
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Attendance> allAttendance = new ArrayList<>();
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,25 +45,19 @@ public class Member {
     @Column(length = 25, name = "role")
     private String role;  // is manager or member
 
-    // enum을 이용한 manager 여부
-    // @Enumerated(EnumType.STRING)
-    // private ManagerStatus role;
-
-    // cascade : 유저가 저장/삭제될 때 uerLoanHistories도 같이 삭제
-    // orphanRemoval : 관계가 끝어지면 관계가 사라진 객체도 같이 삭제
-    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Attendance> allAttendance = new ArrayList<>();
-
     @Column(name = "birthday")
     private LocalDate birthday;
 
     @Column(name= "workStartDate")
     private LocalDate workStartDate;
 
+    @Column
+    private int vacation;
+
+
     //== ==//
+    // Attendance list에 Attendance 추가
     public void saveInList(Long memberId) {
         this.allAttendance.add(new Attendance(this));
     }
-
-
 }

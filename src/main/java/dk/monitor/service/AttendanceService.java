@@ -7,15 +7,11 @@ import dk.monitor.dto.Response.MemberHoursResponse;
 import dk.monitor.dto.request.AttendanceRequest;
 import dk.monitor.repository.member.MemberRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
@@ -54,7 +50,7 @@ public class AttendanceService {
 
         for (Attendance attend : attendances) {
             if (attend.getDate().toString().substring(0,7).equals(month) && attend.getWorkFinished()!=null) {
-                updatedAttendance.add(new MemberHoursResponse(attend.getDate(), attend.getHours()));
+                updatedAttendance.add(new MemberHoursResponse(attend.getDate(), attend.getHours(), attend.isUsingDayOff()));
             }
         }
         return updatedAttendance;

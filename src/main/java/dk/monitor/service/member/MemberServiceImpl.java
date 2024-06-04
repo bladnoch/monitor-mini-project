@@ -7,6 +7,7 @@ import dk.monitor.dto.request.MemberCreateRequest;
 import dk.monitor.exaptions.ManagerException;
 import dk.monitor.repository.member.MemberRepository;
 import dk.monitor.repository.team.TeamRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,24 +15,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@RequiredArgsConstructor
 @Service
 public class MemberServiceImpl implements MemberService{
+
     private final MemberRepository memberRepository;
     private final TeamRepository teamRepository;
 
-    public MemberServiceImpl(MemberRepository memberRepository, TeamRepository teamRepository) {
-        this.memberRepository = memberRepository;
-        this.teamRepository = teamRepository;
-    }
-
-    /**
-     * member 개인정보 저장
-     * @param request (name, teamName, role, birthday,workStartDate)
-     */
     @Transactional
     public void saveMember(MemberCreateRequest request) {
         // member 새로 만들기
-        memberRepository.save(new Member(request.getName(),request.getTeamName(), request.getRole(), request.getBirthday(), request.getWorkStartDate()));
+        memberRepository.save(new Member(request.getName(),request.getTeamName(), request.getRole(), request.getBirthday(), request.getWorkStartDate(),request.getVacation()));
 
         /*
          member table과 team table의 관개 생성
@@ -100,12 +94,6 @@ public class MemberServiceImpl implements MemberService{
                     member.getBirthday(),
                     member.getWorkStartDate()));
         }
-
         return result;
     }
-
-
 }
-
-
-

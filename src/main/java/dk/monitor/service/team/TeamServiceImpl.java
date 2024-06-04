@@ -5,6 +5,7 @@ import dk.monitor.dto.Response.TeamResponse;
 import dk.monitor.dto.request.TeamCreateRequest;
 import dk.monitor.exaptions.TeamException;
 import dk.monitor.repository.team.TeamRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -12,13 +13,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class TeamServiceImpl implements TeamService {
 
     private final TeamRepository teamRepository;
-
-    public TeamServiceImpl(TeamRepository teamRepository) {
-        this.teamRepository = teamRepository;
-    }
 
     @Transactional
     public void saveTeam(TeamCreateRequest request) {

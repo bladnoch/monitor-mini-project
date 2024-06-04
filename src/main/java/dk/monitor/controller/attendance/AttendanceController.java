@@ -4,10 +4,8 @@ package dk.monitor.controller.attendance;
 import dk.monitor.dto.Response.MemberHoursResponse;
 import dk.monitor.dto.request.AttendanceRequest;
 import dk.monitor.service.AttendanceService;
-import jakarta.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

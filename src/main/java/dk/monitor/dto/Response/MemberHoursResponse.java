@@ -8,9 +8,11 @@ import java.time.LocalDate;
 public class MemberHoursResponse {
     private LocalDate date;
     private Long workingMinutes;
+    private boolean usingDayOff;
 
-    public MemberHoursResponse(LocalDate date, Long workingMinutes) {
+    public MemberHoursResponse(LocalDate date, Long workingMinutes, boolean usingDayOff) {
         this.date = date;
         this.workingMinutes = workingMinutes;
+        this.usingDayOff = usingDayOff;
     }
 }
