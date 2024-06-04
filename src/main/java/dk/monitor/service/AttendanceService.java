@@ -28,7 +28,6 @@ public class AttendanceService {
     // 일 생성, 일 시작 저장
     public void saveStart(AttendanceRequest request) {
         // id, start, finish, memberId, hour
-//        Member currentMember = memberRepository.findByIdAndWorkFinished(request.getMemberId(), null).orElseThrow(IllegalArgumentException::new);
         if(attendanceRepository.findByMemberIdAndWorkFinished(request.getMemberId(), null).isPresent()){
             throw new IllegalArgumentException("현재 출근상태 입니다.");
         }

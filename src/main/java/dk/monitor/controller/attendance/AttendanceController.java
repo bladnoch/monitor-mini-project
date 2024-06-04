@@ -19,16 +19,19 @@ public class AttendanceController {
 
     private final AttendanceService attendanceService;
 
+    // 출근 저장
     @PostMapping("/attendance/start")
     public void saveStart(@RequestBody AttendanceRequest request) {
         attendanceService.saveStart(request);
     }
 
+    // 퇴근 저장
     @PostMapping("/attendance/finish")
     public void saveFinish(@RequestBody AttendanceRequest request) {
         attendanceService.saveFinish(request);
     }
 
+    // 모든 일한 시간 출력
     @GetMapping("/attendance")
     public ResponseEntity<?> getWorkHours(@RequestParam Long id, @RequestParam String month) {
         List<MemberHoursResponse> memberHours = attendanceService.getWorkHours(id, month);
@@ -37,6 +40,5 @@ public class AttendanceController {
         return ResponseEntity.ok().body(
                 Map.of("detail", memberHours, "sum", sum)
         );
-
     }
 }

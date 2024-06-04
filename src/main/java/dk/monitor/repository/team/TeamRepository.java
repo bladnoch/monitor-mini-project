@@ -10,5 +10,4 @@ public interface TeamRepository extends JpaRepository<Team, Long> {
 
     Optional<Team> findByName(String teamName);
 
-//    void updateManagerAndMemberCount(String manager, long memberCount);
 }

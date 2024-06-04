@@ -4,6 +4,7 @@ import dk.monitor.domain.member.Member;
 import dk.monitor.repository.member.MemberRepository;
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.time.Duration;
@@ -15,10 +16,8 @@ import java.util.function.LongToDoubleFunction;
 
 @Getter
 @Entity
+@NoArgsConstructor
 public class Attendance {
-
-    protected Attendance() {
-    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
