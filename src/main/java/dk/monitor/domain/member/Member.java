@@ -48,11 +48,17 @@ public class Member {
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Attendance> allAttendance = new ArrayList<>();
 
-
     @Column(name = "birthday")
     private LocalDate birthday;
 
     @Column(name= "workStartDate")
     private LocalDate workStartDate;
+
+    //== ==//
+    public void saveInList(Long memberId) {
+
+        this.allAttendance.add(new Attendance(this));
+    }
+
 
 }
