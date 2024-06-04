@@ -1,39 +1,47 @@
 package dk.monitor.service;
 
 import dk.monitor.controller.attendance.AttendanceRepository;
+import dk.monitor.domain.attendance.Attendance;
 import dk.monitor.domain.member.Member;
 import dk.monitor.dto.request.AttendanceRequest;
 import dk.monitor.repository.member.MemberRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
+@RequiredArgsConstructor
 @Service
+@Transactional
 public class AttendanceService {
-    private AttendanceRepository attendanceRepository;
-    private MemberRepository memberRepository;
 
-    public AttendanceService(AttendanceRepository attendanceRepository, MemberRepository memberRepository) {
-        this.attendanceRepository = attendanceRepository;
-        this.memberRepository = memberRepository;
-    }
+    private final AttendanceRepository attendanceRepository;
+    private final MemberRepository memberRepository;
 
-    @Transactional
+
+
     public void saveStart(AttendanceRequest request) {
-        // id, start, finish, memberId, sum
+        // id, start, finish, memberId, hour
+        Member currentMember = memberRepository.findById(request.getMemberId()).orElseThrow(IllegalArgumentException::new);
+        attendanceRepository.save(new Attendance(currentMember));
 
-
-
-        // 1. Attendance의 출근에 값이 있는지 확인
-        // 2. Attendance의 출근에 값이 없으면 workStart 추가
-        // 3. 있으면 workFinished에 추가
-            // 4. sum을 불러오고 퇴근-출근 값을 sum에 추가
-        // 4.save로 저장
     }
 
-    @Transactional
-    public void saveFinish(AttendanceRequest request) {
 
+    public void saveFinish(AttendanceRequest request) {
+        Attendance attendance= attendanceRepository.findByMemberIdAndWorkFinished(request.getMemberId(), null);
+        attendance.updateHour();
+
+    }
+
+    public List<Attendance> getWorkHours(Long id, String month) {
+        // working on it
+        return new ArrayList<>();
     }
 }
