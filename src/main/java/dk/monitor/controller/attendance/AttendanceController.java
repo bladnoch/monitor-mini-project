@@ -32,7 +32,9 @@ public class AttendanceController {
     // 모든 일한 시간 출력
     @GetMapping("/attendance")
     public ResponseEntity<?> getWorkHours(@RequestParam Long id, @RequestParam String month) {
+
         List<MemberHoursResponse> memberHours = attendanceService.getWorkHours(id, month);
+
         Long sum = attendanceService.getSum(memberHours);
 
         return ResponseEntity.ok().body(

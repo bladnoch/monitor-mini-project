@@ -20,6 +20,8 @@ public class MemberController {
     // 맴버 저장
     @PostMapping("/member")
     public void saveMember(@RequestBody MemberCreateRequest request) {
+        // request에서 연차 전처리
+        // 맴버 저장
         memberService.saveMember(request);
     }
 

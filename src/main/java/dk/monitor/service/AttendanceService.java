@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -64,4 +65,15 @@ public class AttendanceService {
         }
         return sum;
     }
+
+    public void updateDayOff(LocalDate offDay) {
+        LocalDate today = LocalDate.now();
+        // 당일 사용 불가
+        if (today.equals(offDay)) {
+            throw new RuntimeException("당일 사용할 수 없습니다.");
+        }
+        // offDay를 기준으로 휴가 일자를 추가
+
+    }
+
 }
