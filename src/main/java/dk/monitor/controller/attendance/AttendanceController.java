@@ -3,7 +3,7 @@ package dk.monitor.controller.attendance;
 
 import dk.monitor.dto.Response.MemberHoursResponse;
 import dk.monitor.dto.request.AttendanceRequest;
-import dk.monitor.service.AttendanceService;
+import dk.monitor.service.attendance.AttendanceService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

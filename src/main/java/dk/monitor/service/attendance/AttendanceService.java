@@ -1,4 +1,4 @@
-package dk.monitor.service;
+package dk.monitor.service.attendance;
 
 import dk.monitor.controller.attendance.AttendanceRepository;
 import dk.monitor.domain.attendance.Attendance;
@@ -24,11 +24,12 @@ public class AttendanceService {
 
     // 일 생성, 일 시작 저장
     public void saveStart(AttendanceRequest request) {
+
         // id, start, finish, memberId, hour
+        // 최근하지 않음
         if(attendanceRepository.findByMemberIdAndWorkFinished(request.getMemberId(), null).isPresent()){
             throw new IllegalArgumentException("현재 출근상태 입니다.");
         }
-
 
         // 예외처리 : 출근상태에선 출근 불가
         Member currentMember = memberRepository.findById(request.getMemberId()).orElseThrow(IllegalArgumentException::new);
